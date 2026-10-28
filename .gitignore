@@ -21,6 +21,9 @@ venv.bak/
 .vscode/
 .idea/
 
-# OS generated
+# Archives
+*.zip
+*.tar.gz
+
 .DS_Store
 Thumbs.db
