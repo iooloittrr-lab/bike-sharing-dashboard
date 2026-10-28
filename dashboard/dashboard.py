@@ -92,7 +92,7 @@ with st.sidebar:
     )
     
     st.markdown("---")
-    st.markdown("**Pengembang:**  \nNama: Rama • Ttrr  \nEmail: iooloittrr@gmail.com")
+    st.markdown("**Pengembang:**  \nNama: Rama Dwi Nugraha  \nEmail: iooloittrr@gmail.com")
 
 filtered_df = df[
     (df['dteday'].dt.date >= start_date) &
@@ -261,7 +261,8 @@ with tab2:
     tod_data = filtered_df.groupby('time_of_day')['cnt'].mean().reindex(tod_order)
     
     fig_tod, ax_tod = plt.subplots(figsize=(10, 4))
-    colors_tod = ['#cbd5e1', '#60a5fa', '#93c5fd', '#1d4ed8', '#64748b']
+    max_tod = tod_data.max()
+    colors_tod = ['#1d4ed8' if val == max_tod else '#93c5fd' for val in tod_data.values]
     bars_tod = ax_tod.bar(tod_data.index, tod_data.values, color=colors_tod, width=0.55)
     ax_tod.set_ylabel("Rata-rata Rental per Jam (Unit)", fontweight='bold')
     for bar in bars_tod:
@@ -303,7 +304,8 @@ with tab3:
         st.markdown("**Rata-rata Sewa Harian Berdasarkan Cuaca**")
         weather_perf = daily_agg.groupby('weather_label')['cnt'].mean().sort_values(ascending=False)
         fig_w, ax_w = plt.subplots(figsize=(6, 4))
-        colors_w = ['#059669' if 'Clear' in w else '#d97706' if 'Misty' in w else '#dc2626' for w in weather_perf.index]
+        max_weather = weather_perf.max()
+        colors_w = ['#1e40af' if val == max_weather else '#93c5fd' for val in weather_perf.values]
         bars_w = ax_w.bar(weather_perf.index, weather_perf.values, color=colors_w, width=0.55)
         ax_w.set_ylabel("Rata-rata Rental Harian", fontweight='bold')
         ax_w.tick_params(axis='x', rotation=15)
@@ -336,8 +338,9 @@ with tab4:
         temp_perf = filtered_df.groupby('temp_category')['cnt'].mean().reindex(temp_order).dropna()
         
         fig_t, ax_t = plt.subplots(figsize=(6, 4))
-        colors_t = ['#93c5fd', '#86efac', '#fdba74', '#f97316']
-        bars_t = ax_t.bar(temp_perf.index, temp_perf.values, color=colors_t[:len(temp_perf)], width=0.55)
+        max_temp = temp_perf.max()
+        colors_t = ['#1e40af' if val == max_temp else '#93c5fd' for val in temp_perf.values]
+        bars_t = ax_t.bar(temp_perf.index, temp_perf.values, color=colors_t, width=0.55)
         ax_t.set_ylabel("Rata-rata Rental / Jam (Unit)", fontweight='bold')
         for bar in bars_t:
             yval = bar.get_height()
@@ -351,8 +354,9 @@ with tab4:
         hum_perf = filtered_df.groupby('humidity_category')['cnt'].mean().reindex(hum_order).dropna()
         
         fig_h, ax_h = plt.subplots(figsize=(6, 4))
-        colors_h = ['#fbbf24', '#34d399', '#60a5fa']
-        bars_h = ax_h.bar(hum_perf.index, hum_perf.values, color=colors_h[:len(hum_perf)], width=0.55)
+        max_hum = hum_perf.max()
+        colors_h = ['#1e40af' if val == max_hum else '#93c5fd' for val in hum_perf.values]
+        bars_h = ax_h.bar(hum_perf.index, hum_perf.values, color=colors_h, width=0.55)
         ax_h.set_ylabel("Rata-rata Rental / Jam (Unit)", fontweight='bold')
         for bar in bars_h:
             yval = bar.get_height()
@@ -402,6 +406,6 @@ with tab5:
 
 st.markdown("---")
 st.markdown(
-    "<center><small>Proyek Analisis Data - Belajar Analisis Data dengan Python (Dicoding) | Rama • Ttrr</small></center>",
+    "<center><small>Proyek Analisis Data - Belajar Analisis Data dengan Python (Dicoding) | Rama Dwi Nugraha</small></center>",
     unsafe_allow_html=True
 )
