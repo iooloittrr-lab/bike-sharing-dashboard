@@ -26,7 +26,7 @@ Tahapan analisis data meliputi:
 
 ## Pertanyaan Bisnis (SMART)
 1. **Pertanyaan 1**: Bagaimana pengaruh kondisi musim (*Season*) dan kondisi cuaca (*Weather Situation*) terhadap rata-rata dan total volume penyewaan sepeda harian sepanjang periode 2011-2012?
-2. **Pertanyaan 2**: Pada jam berapa saja terjadi lonjakan puncak (*peak rush hours*) penyewaan sepeda, dan bagaimana perbedaan pola perilakunya antara hari kerja (*Working Day*) dibandingkan hari libur/akhir pekan (*Weekend / Holiday*) sepanjang tahun 2011-2012?
+2. **Pertanyaan 2**: Pada jam berapa saja terjadi lonjakan puncak (*peak rush hours*) penyewaan sepeda sepanjang tahun 2011-2012, dan bagaimana perbedaan pola perilakunya antara hari kerja (*Working Day*) dibandingkan hari libur/akhir pekan (*Weekend / Holiday*) pada periode yang sama?
 3. **Pertanyaan 3**: Bagaimana tren pertumbuhan bulanan dan proporsi kontribusi antara pengguna kasual (*Casual Users*) dan pengguna terdaftar (*Registered Members*) dari tahun 2011 hingga 2012?
 4. **Pertanyaan 4**: Bagaimana segmentasi volume rental sepeda berdasarkan klaster rentang temperatur suhu (*Temperature Binning*: Cold, Mild, Warm, Hot) dan tingkat kelembapan (*Humidity Binning*: Dry, Ideal, Humid) tanpa algoritma machine learning selama periode 2011-2012?
 

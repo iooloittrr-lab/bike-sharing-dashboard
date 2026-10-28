@@ -70,25 +70,25 @@ with st.sidebar:
     else:
         start_date, end_date = min_date, max_date
         
-    available_seasons = list(df['season_label'].unique())
-    selected_seasons = st.multiselect(
+    season_options = ["Semua Musim"] + list(df['season_label'].unique())
+    selected_season = st.selectbox(
         "Musim (Season):",
-        options=available_seasons,
-        default=available_seasons
+        options=season_options,
+        index=0
     )
     
-    available_days = list(df['workingday_label'].unique())
-    selected_days = st.multiselect(
+    day_options = ["Semua Tipe Hari"] + list(df['workingday_label'].unique())
+    selected_day = st.selectbox(
         "Tipe Hari:",
-        options=available_days,
-        default=available_days
+        options=day_options,
+        index=0
     )
     
-    available_weathers = list(df['weather_label'].unique())
-    selected_weathers = st.multiselect(
+    weather_options = ["Semua Cuaca"] + list(df['weather_label'].unique())
+    selected_weather = st.selectbox(
         "Kondisi Cuaca:",
-        options=available_weathers,
-        default=available_weathers
+        options=weather_options,
+        index=0
     )
     
     st.markdown("---")
@@ -96,11 +96,17 @@ with st.sidebar:
 
 filtered_df = df[
     (df['dteday'].dt.date >= start_date) &
-    (df['dteday'].dt.date <= end_date) &
-    (df['season_label'].isin(selected_seasons)) &
-    (df['workingday_label'].isin(selected_days)) &
-    (df['weather_label'].isin(selected_weathers))
+    (df['dteday'].dt.date <= end_date)
 ]
+
+if selected_season != "Semua Musim":
+    filtered_df = filtered_df[filtered_df['season_label'] == selected_season]
+
+if selected_day != "Semua Tipe Hari":
+    filtered_df = filtered_df[filtered_df['workingday_label'] == selected_day]
+
+if selected_weather != "Semua Cuaca":
+    filtered_df = filtered_df[filtered_df['weather_label'] == selected_weather]
 
 if filtered_df.empty:
     st.warning("Tidak ada data yang cocok dengan kriteria filter yang dipilih. Silakan sesuaikan kembali filter di sidebar.")
